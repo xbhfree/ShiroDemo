@@ -22,4 +22,6 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 shiro:
-  loginUrl: /UserController/doLogin
+  loginUrl: /UserController/login
+server:
+  port: 8080

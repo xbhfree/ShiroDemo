@@ -5,26 +5,40 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Administrator
  */
-@RestController
+@Controller
+@RequestMapping("UserController")
 public class UserController {
-    @GetMapping("UserController/doLogin")
-    public String doLogin(String name, String pwd){
+
+    @GetMapping("login")
+    public String toLogin(){
+        return "login";
+    }
+
+
+    @GetMapping("doLogin")
+    public String doLogin(String name, String pwd, HttpSession session){
         Subject subject = SecurityUtils.getSubject();
         AuthenticationToken token = new UsernamePasswordToken(name, pwd);
         System.out.println("!!!!!!!!!!!");
         try {
             subject.login(token);
-            System.out.println("登录成功");
-            return "登录成功";
+            session.setAttribute("user", token.getPrincipal().toString());
+            return "main";
+            //System.out.println("登录成功");
+            //return "登录成功";
         } catch (AuthenticationException e) {
             e.printStackTrace();
-            System.out.println("登录失败");
+            //System.out.println("登录失败");
             return "登录失败";
         }
     }
