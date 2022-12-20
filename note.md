@@ -42,4 +42,8 @@ try {
 3. JSP标签(<shiro:hasRole name="admin"></shiro:hasRole>)
 ### 授权过程
 subject-->security manager-->authorizer-->realm
-
+## 认证策略
+### 种类
+1. AtLeastOneSuccessfulStrategy 只要有一个成功
+2. FirstSuccessfulStrategy      第一个成功后不判断后面的
+3. AllSuccessfulStrategy        所有都成功

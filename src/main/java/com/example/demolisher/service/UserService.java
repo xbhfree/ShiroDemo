@@ -14,4 +14,6 @@ public interface UserService extends IService<User> {
      * @return 用户
      */
     public User getUserInfoByName(String name);
+
+    public User getUserInfoByPhoneNum(String phoneNum);
 }
