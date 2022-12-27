@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <title>title</title>
@@ -11,9 +11,9 @@
 <br>
 <a href="/logout">logout</a>
 <br>
-<a href="/UserController/checkRole">验证角色</a>
+<a shiro:hasRole="admin" href="/UserController/checkRole">验证角色</a>
 <br>
-<a href="/UserController/checkPermission">验证权限</a>
+<a shiro:hasPermission="user:delete" href="/UserController/checkPermission">验证权限</a>
 
 </body>
 </html>
