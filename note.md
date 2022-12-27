@@ -47,3 +47,11 @@ subject-->security manager-->authorizer-->realm
 1. AtLeastOneSuccessfulStrategy 只要有一个成功
 2. FirstSuccessfulStrategy      第一个成功后不判断后面的
 3. AllSuccessfulStrategy        所有都成功
+## 常用注解
+1. @RequiresAuthentication 验证用户是否登录 等于`subject.isAuthenticated()`
+2. @RequiresUser 验证是否被记忆 登陆后`subject.isAuthenticated()`为`true`，被记忆`subject.isRemembered()`为`true`
+3. @RequiresGuest 验证访客请求，`subject.getPrincipal()`为`null`
+4. @RequiresRoles 判断是否有角色
+5. @RequiresPermissions 判断是否有权限
+6. 
+

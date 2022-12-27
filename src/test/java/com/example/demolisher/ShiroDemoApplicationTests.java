@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class ShiroDemoApplicationTests {
 
@@ -19,8 +21,10 @@ class ShiroDemoApplicationTests {
 	private UserMapper userMapper;
 	@Test
 	public void testMapper(){
-		User user = userMapper.selectById(1L);
-		System.out.println(user);
+		List<String> alisa = userMapper.getRoleByUsername("alisa");
+		System.out.println(alisa);
+		List<String> permissionsByRoles = userMapper.getPermissionsByRoles(alisa);
+		System.out.println(permissionsByRoles);
 	}
 
 	@Test

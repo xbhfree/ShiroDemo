@@ -8,6 +8,8 @@ import com.example.demolisher.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author Administrator
  */
@@ -31,5 +33,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         wrapper.eq("phone", phoneNum);
         User user = userMapper.selectOne(wrapper);
         return user;
+    }
+
+    @Override
+    public List<String> getUserRolesInfoByUsername(String username) {
+        List<String> roles = userMapper.getRoleByUsername(username);
+        return roles;
+    }
+
+    @Override
+    public List<String> getUserPermissionsByRoles(List<String> roles) {
+        return userMapper.getPermissionsByRoles(roles);
     }
 }

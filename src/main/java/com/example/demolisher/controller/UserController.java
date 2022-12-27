@@ -4,12 +4,11 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -50,4 +49,19 @@ public class UserController {
         return "main";
     }
 
+
+    @GetMapping("checkRole")
+    @RequiresRoles({"admin", "boss"})
+    @ResponseBody
+    public String checkRole(){
+        return "拥有角色";
+    }
+
+
+    @GetMapping("checkPermission")
+    @RequiresPermissions({"user:create"})
+    @ResponseBody
+    public String checkPermission(){
+        return "拥有权限";
+    }
 }
